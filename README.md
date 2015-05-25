@@ -9,7 +9,7 @@
 ## Functionality
 
 ## Files
- * bin/check-ftp
+ * bin/check-ftp.rb
 
 ## Usage
 
