@@ -14,7 +14,7 @@ pvt_key = '~/.ssh/gem-private_key.pem'
 Gem::Specification.new do |s|
   s.authors                = ['Sensu-Plugins and contributors']
   s.name                   = 'sensu-plugins-ftp'
-  s.version                = SensuPluginsFtp::VERSION]
+  s.version                = SensuPluginsFtp::VERSION
   s.email                  = '<sensu-users@googlegroups.com>'
   s.homepage               = 'https://github.com/sensu-plugins/sensu-plugins-ftp'
   s.summary                = ''
