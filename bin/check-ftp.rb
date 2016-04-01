@@ -29,6 +29,8 @@
 
 require 'sensu-plugin/check/cli'
 require 'net/http'
+require 'tempfile'
+require 'pathname'
 
 class CheckFTP < Sensu::Plugin::Check::CLI
   option :host,
@@ -40,6 +42,14 @@ class CheckFTP < Sensu::Plugin::Check::CLI
          default: false
   option :noverify,
          short: '-n',
+         boolean: true,
+         default: false
+  option :write_file,
+         short: '-w',
+         boolean: true,
+         default: false
+  option :passive,
+         short: '-x',
          boolean: true,
          default: false
   option :user,
@@ -54,14 +64,29 @@ class CheckFTP < Sensu::Plugin::Check::CLI
          proc: proc(&:to_i),
          default: 15
 
+  def write_file
+    file = Tempfile.new("sensu_#{Time.now.to_i}.txt")
+
+    filename = Pathname.new(file.path).basename.to_s
+
+    puts ftp.passive
+    file.write("Generated from Sensu at #{Time.now}")
+    file.close
+
+    ftp.put(file.path, filename)
+    puts ftp.list
+    ftp.delete(filename)
+
+    file.unlink
+  end
+
   def run
     begin
       timeout(config[:timeout]) do
-        if config[:tls]
-          ftps_login
-        else
-          ftp_login
-        end
+        ftp.login(config[:user], config[:pass])
+        ftp.passive = config[:passive]
+        write_file if config[:write_file]
+        ftp.quit
       end
     rescue Timeout::Error
       critical 'Connection timed out'
@@ -69,6 +94,14 @@ class CheckFTP < Sensu::Plugin::Check::CLI
       critical "Connection error: #{e.message}"
     end
     ok
+  end
+
+  def ftp
+    @ftp ||= if config[:tls]
+               ftps_login
+             else
+               ftp_login
+             end
   end
 
   def ftps_login
@@ -82,8 +115,7 @@ class CheckFTP < Sensu::Plugin::Check::CLI
         verify_mode: verify
       )
       ftps.connect(config[:host])
-      ftps.login(config[:user], config[:pass])
-      ftps.quit
+      ftps
     rescue => e
       critical "Failed to log in (#{e.to_s.chomp})"
     end
@@ -93,8 +125,7 @@ class CheckFTP < Sensu::Plugin::Check::CLI
     require 'net/ftp'
     begin
       ftp = Net::FTP.new(config[:host])
-      ftp.login(config[:user], config[:pass])
-      ftp.quit
+      ftp
     rescue => e
       critical "Failed to log in (#{e.to_s.chomp})"
     end
