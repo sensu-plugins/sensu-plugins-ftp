@@ -4,6 +4,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
+### Added
+- check-ftp.rb: added support for implicit FTPS. (@swibowo)
+
+### Changed
+- Define `net` and `double-bag-ftps` dependency (@swibowo)
 
 ## [1.0.0] - 2017-05-14
 ### Added
