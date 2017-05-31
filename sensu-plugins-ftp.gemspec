@@ -30,7 +30,6 @@ Gem::Specification.new do |s|
   s.version                = SensuPluginsFtp::Version::VER_STRING
 
   s.add_runtime_dependency 'sensu-plugin',                  '~> 1.2'
-  s.add_runtime_dependency 'net',                           '~> 0.3.3'
   s.add_runtime_dependency 'double-bag-ftps',               '~> 0.1.3'
 
   s.add_development_dependency 'bundler',                   '~> 1.7'

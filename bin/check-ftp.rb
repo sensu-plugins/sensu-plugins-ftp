@@ -63,7 +63,7 @@ class CheckFTP < Sensu::Plugin::Check::CLI
          short: '-t SECS',
          proc: proc(&:to_i),
          default: 15
-  option :implicit,
+  option :implicit_ftps,
          short: '-i',
          boolean: true,
          default: false
@@ -118,7 +118,7 @@ class CheckFTP < Sensu::Plugin::Check::CLI
       ftps.ssl_context = DoubleBagFTPS.create_ssl_context(
         verify_mode: verify
       )
-      if config[:implicit]
+      if config[:implicit_ftps]
         ftps.ftps_mode = DoubleBagFTPS::IMPLICIT
       end
       ftps.connect(config[:host])
