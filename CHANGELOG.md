@@ -5,6 +5,9 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 
 ## [Unreleased]
 
+### Fixed
+- check-ftp.rb: updated to remove deprecation warning (@majormoses)
+
 ## [1.1.0] - 2017-05-30
 ### Added
 - check-ftp.rb: add support for implicit FTPS. (@swibowo)

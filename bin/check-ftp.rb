@@ -86,7 +86,7 @@ class CheckFTP < Sensu::Plugin::Check::CLI
 
   def run
     begin
-      timeout(config[:timeout]) do
+      Timeout.timeout(config[:timeout]) do
         ftp.login(config[:user], config[:pass])
         ftp.passive = config[:passive]
         write_file if config[:write_file]
