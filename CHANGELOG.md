@@ -1,12 +1,16 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
+This CHANGELOG follows the format listed at [Our CHANGELOG Guidelines](https://github.com/sensu-plugins/community/blob/master/HOW_WE_CHANGELOG.md).
+Which is based on [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
 
 ### Fixed
 - check-ftp.rb: updated to remove deprecation warning (@majormoses)
+
+### Changed
+- update location for our changelog format (@majormoses)
 
 ## [1.1.0] - 2017-05-30
 ### Added
