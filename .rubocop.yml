@@ -33,3 +33,7 @@ RegexpLiteral:
 
 Style/Documentation:
   Enabled: false
+  
+IfUnlessModifier:
+  Enabled: false
+
