@@ -33,3 +33,10 @@ deploy:
     rvm: 2.3.0
     rvm: 2.4.1
     repo: sensu-plugins/sensu-plugins-ftp
+  - provider: script
+    script: bonsai/ruby-runtime/travis-build-bonsai-assets.sh sensu-plugins-ftp
+    skip_cleanup: true
+    on:
+      tags: true
+      all_branches: true
+      rvm: 2.4.1
