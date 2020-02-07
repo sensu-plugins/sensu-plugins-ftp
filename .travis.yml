@@ -4,9 +4,6 @@ cache:
 install:
 - bundle install
 rvm:
-- 2.0
-- 2.1
-- 2.2
 - 2.3.0
 - 2.4.1
 notifications:
@@ -20,16 +17,19 @@ script:
 - gem build sensu-plugins-ftp.gemspec
 - gem install sensu-plugins-ftp-*.gem
 deploy:
-  provider: rubygems
-  api_key:
-    secure: v95V8Ti3/Ti38MFl8bYYJLv1M6IQ8XDr4mRbOCc4bsSBQJeR7vxlYqHLlymteDWdS26KkP6TBYJtMtoeGfuEYRRYoTFJNf23Tt75Qo6rGVxBJqjwhMkR+Q5c/3lYS84glryX9suZ17MXE2qOBLOBRsR1D4TemkC/IqysyQ3O6DA=
-  gem: sensu-plugins-ftp
-  on:
-    tags: true
-    all_branches: true
-    rvm: 2.0
-    rvm: 2.1
-    rvm: 2.2
-    rvm: 2.3.0
-    rvm: 2.4.1
-    repo: sensu-plugins/sensu-plugins-ftp
+  - provider: script
+    script: chmod +x bonsai/ruby-runtime/travis-build-ruby-plugin-assets.sh && bonsai/ruby-runtime/travis-build-ruby-plugin-assets.sh sensu-plugins-ftp
+    skip_cleanup: true
+    on:
+      tags: true
+      all_branches: true
+      rvm: 2.4.1
+  - provider: rubygems
+    api_key:
+      secure: v95V8Ti3/Ti38MFl8bYYJLv1M6IQ8XDr4mRbOCc4bsSBQJeR7vxlYqHLlymteDWdS26KkP6TBYJtMtoeGfuEYRRYoTFJNf23Tt75Qo6rGVxBJqjwhMkR+Q5c/3lYS84glryX9suZ17MXE2qOBLOBRsR1D4TemkC/IqysyQ3O6DA=
+    gem: sensu-plugins-ftp
+    on:
+      tags: true
+      all_branches: true
+      rvm: 2.4.1
+      repo: sensu-plugins/sensu-plugins-ftp
