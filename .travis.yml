@@ -27,6 +27,7 @@ deploy:
       all_branches: true
       rvm: 2.4.1
   - provider: rubygems
+    github_token: $GH_TOKEN
     api_key:
       secure: v95V8Ti3/Ti38MFl8bYYJLv1M6IQ8XDr4mRbOCc4bsSBQJeR7vxlYqHLlymteDWdS26KkP6TBYJtMtoeGfuEYRRYoTFJNf23Tt75Qo6rGVxBJqjwhMkR+Q5c/3lYS84glryX9suZ17MXE2qOBLOBRsR1D4TemkC/IqysyQ3O6DA=
     gem: sensu-plugins-ftp
