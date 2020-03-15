@@ -1,3 +1,7 @@
+AllCops:
+  TargetRubyVersion: 2.4
+  Exclude:
+    - 'bin/check-ftp.rb'
 
 MethodLength:
   Max: 200
@@ -8,6 +12,9 @@ LineLength:
 AbcSize:
   Max: 100
 
+BlockLength:
+  Max: 35
+  
 FileName:
   Enabled: false
 
@@ -28,3 +35,7 @@ RegexpLiteral:
 
 Style/Documentation:
   Enabled: false
+  
+IfUnlessModifier:
+  Enabled: false
+

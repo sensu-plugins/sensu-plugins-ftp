@@ -11,6 +11,7 @@ Which is based on [Keep A Changelog](http://keepachangelog.com/)
 
 ### Changed
 - update location for our changelog format (@majormoses)
+- added .bonsai.yml for bonsai.sensu.io compatibility
 
 ## [1.1.0] - 2017-05-30
 ### Added
